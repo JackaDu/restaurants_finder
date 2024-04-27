@@ -36,7 +36,7 @@ def get_tiktok_info(hashtag: str, query: str) -> List[str]:
         "hashtags": [
             hashtag
         ],
-        "resultsPerPage": 150,
+        "resultsPerPage": 100,
         "searchQueries": [
             query
         ],
@@ -71,7 +71,7 @@ def get_yelp_restaurants_reviews(restaurant_name: str, city: str) -> dict:
                 "RESIDENTIAL"
             ]
         },
-        "reviewLimit": 10,
+        "reviewLimit": 5,
         "reviewsLanguage": "ALL",
         "scrapeReviewerName": False,
         "scrapeReviewerUrl": False,
