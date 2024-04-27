@@ -4,4 +4,4 @@ build:
     worker: Dockerfile
 run:
   web: uvicorn main:app --host 0.0.0.0 --port $PORT --reload
-  worker: celery -A chat.celery_app worker --pool=solo --loglevel=info
+  worker: celery -A chat.celery_app worker --broker_url=$REDISCLOUD_URL --result_backend=$REDISCLOUD_URL --pool=solo --loglevel=info
