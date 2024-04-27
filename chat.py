@@ -36,7 +36,7 @@ def get_tiktok_info(hashtag: str, query: str) -> List[str]:
         "hashtags": [
             hashtag
         ],
-        "resultsPerPage": 100,
+        "resultsPerPage": 150,
         "searchQueries": [
             query
         ],
@@ -98,7 +98,7 @@ def execute_agent(city):
                     For example, for user input of 'SF', you can search for query of 'san francisco newly opened restaurants'
                     and hashtag of 'sanfranciscorestaurants'.
                     For 10 posts posted after {get_start_time()}, verify EACH from yelp that it is indeed newly opened.
-                    If the review count is greater than 50, you should not consider it as newly opened.
+                    If the review count is greater than 50, you MUST not consider it as newly opened.
                     Output up to 5 restaurants that MUST pass all the verification as JSON:
                     ```
                     {{{{
@@ -106,7 +106,8 @@ def execute_agent(city):
                         "category": category of the restaurant,
                         "video_url": tiktok video url,
                         "address"(optional): string address info from yelp,
-                        "date_opened"(optional): formatted like '2023-10-10'
+                        "date_opened"(optional): formatted like '2023-10-10',
+                        "reason": reason why you consider it as newly opened
                     }}}}, ..
                     ```
                     -------------------------------
