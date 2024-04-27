@@ -1,11 +1,9 @@
-setup:
-  addons:
-    - plan: heroku-redis
-      as: redis
 build:
   docker:
     web: Dockerfile
     worker: Dockerfile
+    redis: redis
 run:
   web: uvicorn main:app --host 0.0.0.0 --port $PORT --reload
   worker: celery -A chat.celery_app worker --pool=solo --loglevel=info
+  redis: redis-server --port $PORT
