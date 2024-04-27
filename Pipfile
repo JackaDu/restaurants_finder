@@ -1,0 +1,17 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+langchainhub = "*"
+celery = "*"
+redis = "*"
+fastapi = "*"
+uvicorn = {extras = ["standard"], version = "*"}
+flower = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.11"

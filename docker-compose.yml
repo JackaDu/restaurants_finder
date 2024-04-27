@@ -1,0 +1,37 @@
+services:
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./db/redis_data:/data
+  app:
+    container_name: app
+    build: .
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    volumes:
+      - .:/app
+    ports:
+      - 8000:8000
+    restart: always
+    depends_on:
+      - redis
+  celery_worker:
+    container_name: celery_worker
+    build: .
+    command: celery -A chat.celery_app worker --pool=solo --loglevel=info
+    volumes:
+      - .:/app
+    depends_on:
+      - redis
+      - app
+  flower:
+    container_name: flower
+    build: .
+    command: celery -A chat.celery_app --broker=redis://redis:6379 flower --port=5555
+    ports:
+      - 5556:5555
+    depends_on:
+      - app
+      - redis
+      - celery_worker
