@@ -18,8 +18,8 @@ from celery import shared_task
 load_dotenv()
 celery_app = Celery(
     __name__,
-    broker=os.environ.get('REDISCLOUD_URL'),
-    backend=os.environ.get('REDISCLOUD_URL')
+    broker=os.environ.get('CELERY_BROKER_URL'),
+    backend=os.environ.get('CELERY_BACKEND_URL')
 )
 
 # calculate starttimestamp for tiktok videos

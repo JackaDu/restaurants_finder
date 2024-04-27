@@ -4,7 +4,7 @@ from chat import *
 import os
 
 load_dotenv()
-celery_app = Celery('worker', backend=os.environ.get('REDISCLOUD_URL'), broker=os.environ.get('REDISCLOUD_URL'))
+celery_app = Celery('worker', backend=os.environ.get('CELERY_BACKEND_URL'), broker=os.environ.get('CELERY_BROKER_URL'))
 
 @celery_app.task
 def hello():
